@@ -1,7 +1,15 @@
 <script setup>
-import TheHeader from "@/components/TheHeader.vue";
-import ProductCard from "@/components/ProductCard.vue";
-import products from "@/data/products.json";
+import { storeToRefs } from "pinia";
+import { useProductStore, useCartStore } from "./stores";
+
+import TheHeader from "./components/TheHeader.vue";
+import ProductCard from "./components/ProductCard.vue";
+
+const productStore = useProductStore();
+const cartStore = useCartStore();
+
+const { products } = storeToRefs(productStore);
+productStore.getProducts();
 </script>
 
 <template>
@@ -12,6 +20,7 @@ import products from "@/data/products.json";
         v-for="product in products"
         :key="product.name"
         :product="product"
+        @addToCart="cartStore.addToCart($event, product)"
       />
     </ul>
   </div>
