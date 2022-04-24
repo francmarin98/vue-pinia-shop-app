@@ -2,7 +2,7 @@
 // Imports
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import { useCartStore } from "../stores";
+import { useCartStore } from "../stores/CartStore";
 
 // Components
 import CartItem from "./CartItem.vue";
